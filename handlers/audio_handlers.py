@@ -75,8 +75,8 @@ async def get_assistant_response(text: str) -> Optional[str]:
 async def text_to_speech(text: str, output_path: Path) -> bool:
     try:
         response = await client.audio.speech.create(
-            model="tts-1",
-            voice="nova",
+            model=settings.OPENAI_TTS_MODEL,
+            voice=settings.OPENAI_TTS_VOICE,
             input=text
         )
         await response.astream_to_file(output_path)
